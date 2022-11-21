@@ -1,8 +1,11 @@
 <?php
 class ItemOwners {
     public static function groupByOwners($ItemsArr) {
-
-        return null;
+        $NewArr = [];
+        foreach ($ItemsArr as $Key => $Value) {
+            $NewArr[$Value][] = $Key;
+        }
+        return $NewArr;
     }
 }
 $ItemsArr = array(
