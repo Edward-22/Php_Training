@@ -2,8 +2,8 @@
 class ItemOwners {
     public static function groupByOwners($ItemsArr) {
         $NewArr = [];
-        foreach ($ItemsArr as $Key => $Value) {
-            $NewArr[$Value][] = $Key;
+        foreach ($ItemsArr as $KeyStr => $ValueStr) {
+            $NewArr[$ValueStr][] = $KeyStr;
         }
         return $NewArr;
     }
