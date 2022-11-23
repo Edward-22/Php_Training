@@ -1,5 +1,4 @@
 <?php
-//Solution as loop
 $IntArr = [0,1];
 $FibonacciArr = [0,1];
 for ($Int=0; $Int<=7; $Int++) {
@@ -9,8 +8,6 @@ for ($Int=0; $Int<=7; $Int++) {
     array_push($FibonacciArr,$NextInt);
 }
 echo json_encode($FibonacciArr)."<br>";
-
-//Solution with recursive function
 class Fibonacci{
     public static function getSequence($TotalIterationsInt){
         $SequenceArr = [0,1];
