@@ -1,5 +1,5 @@
 <?php
-$MaxNumberInt = 34;
+$MaxNumberInt = $_POST["Maximum_Number"];
 $IterationCountInt = 0;
 $SequenceArr = [0,1];
 do {
