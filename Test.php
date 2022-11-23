@@ -1,11 +1,10 @@
 <?php
-class Fibonacci{
-    public static function getSequence($TotalIterationsInt){
-        $SequenceArr = [0,1];
-        for ($Int = 0; $Int <$TotalIterationsInt; $Int++) {
-            $SequenceArr[$Int+2] = $SequenceArr[$Int] + $SequenceArr[$Int+1];
-        }
-        return $SequenceArr;
-    }
+$MaxNumberInt = 34;
+$IterationCountInt = 0;
+$SequenceArr = [0,1];
+do {
+    $SequenceArr[$IterationCountInt + 2] = $SequenceArr[$IterationCountInt] + $SequenceArr[$IterationCountInt + 1];
+    $IterationCountInt++;
 }
-echo json_encode(Fibonacci::getSequence(8));
+while ($MaxNumberInt != end($SequenceArr));
+echo json_encode($SequenceArr);
