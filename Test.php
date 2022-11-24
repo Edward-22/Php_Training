@@ -29,3 +29,23 @@ else {
     echo "Error creating table: ".$conn->error;
 }
 $conn->close();
+class Person {
+    function createPerson() {
+
+    }
+    function loadPerson() {
+
+    }
+    function savePerson() {
+
+    }
+    function deletePerson() {
+
+    }
+    function loadAllPeople() {
+
+    }
+    function deleteAllPeople() {
+
+    }
+}
