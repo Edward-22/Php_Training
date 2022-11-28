@@ -26,7 +26,14 @@ class Person {
     }
     private static function tableCreation() {
         $Sql = <<<SQL
-            CREATE TABLE IF NOT EXISTS Person
+                USE MyDatabase
+                CREATE TABLE IF NOT EXISTS Person (
+                FirstName VARCHAR(20) NOT NULL,
+                Surname VARCHAR(20) NOT NULL,
+                DateOfBirth DATE NOT NULL,
+                EmailAddress VARCHAR(30),
+                Age INT
+            )
         SQL;
         if (!self::$ConnObj->query($Sql)) {
             die("Table creation failed you: ".self::$ConnObj->error);
@@ -40,7 +47,7 @@ class Person {
         // SQL INSERT
         for ($I = 0; $I <10; $I++) {
             $Sql = <<<SQL
-            
+            INSERT INTO Person()
         SQL;
         }
         if (!self::$ConnObj->query($Sql)) {
