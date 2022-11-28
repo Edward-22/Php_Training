@@ -43,9 +43,8 @@ class Person {
     private static function closeConnection() {
         self::$ConnObj->close();
     }
-    public static function createPerson($Int) {
+    public static function createPerson($Int) { //INSERT
         self::Connect();
-        // SQL INSERT
             $Sql = <<<SQL
             INSERT INTO Person(FirstName, Surname, DateOfBirth, EmailAddress, Age)
             VALUES ("Piet","Pompies","1988-01-01","pompie@pomp.com",$Int)
@@ -55,7 +54,29 @@ class Person {
         }
         self::closeConnection();
     }
+    public static function loadPerson() { // SELECT
+        self::Connect();
+            $Sql = <<<SQL
+            SELECT FirstName, Surname FROM Person
+        SQL;
+        $ResultObj = self::$ConnObj->query($Sql);
+        $NewArr = [];
+        if ($ResultObj->num_rows > 0) {
+            while($AttributeArr = $ResultObj->fetch_assoc()) {
+                $NewArr[] = $AttributeArr;
+            }
+        } else {
+            die("Loading person has failed you");
+        }
+        self::closeConnection();
+        return $NewArr;
+    }
+    public static function savePerson() { //UPDATE
+        self::Connect();
+    }
 }
-for ($Int = 0; $Int <=10; $Int++) {
+//When you want loop to create 10 Persons
+/*for ($Int = 0; $Int <=9; $Int++) {
     Person::createPerson($Int);
-}
+}*/
+echo json_encode(Person::loadPerson());
