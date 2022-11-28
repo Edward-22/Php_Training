@@ -1,28 +1,52 @@
 <?php
-class DatabaseDesign {
-protected static $ServernameStr = "localhost";
-protected static $UsernameStr = "phpmyadmin";
-protected static $PasswordStr = "password";
-//protected static $Conn
-    public static function Connect() {
-        $conn = new mysqli(self::$ServernameStr, self::$UsernameStr, self::$PasswordStr);
-        if ($conn->connect_error) {
-            die("Connection failed: ".$conn->connect_error);
-        }
-        else {
-            return "Successfully connected!";
+class Person {
+    protected static $ServernameStr = "localhost";
+    protected static $UsernameStr = "phpmyadmin";
+    protected static $PasswordStr = "password";
+    protected static $ConnObj;
+
+    private static function connect() {
+        self::$ConnObj = new mysqli(self::$ServernameStr, self::$UsernameStr, self::$PasswordStr);
+        if (self::$ConnObj->connect_error) {
+            die("Connection failed: ".self::$ConnObj->connect_error);
+        } else {
+            self::databaseCreation();
         }
     }
-    public static function DatabaseCreation() {
-        self::Connect();
-        $Sql = "CREATE DATABASE IF NOT EXISTS Person";
-        if ($conn -> query($Sql) === TRUE) {
-            return "Database Exists";
+    private static function databaseCreation() {
+        $Sql = <<<SQL
+            CREATE DATABASE IF NOT EXISTS MyDatabase
+        SQL;
+        if (!self::$ConnObj->query($Sql)) {
+            die("Database creation ailed you: ".self::$ConnObj->error);
         }
         else {
-            die("Database failed you: ".$conn->error);
+            self::tableCreation();
         }
-        $conn->close();
+    }
+    private static function tableCreation() {
+        $Sql = <<<SQL
+            CREATE TABLE IF NOT EXISTS Person
+        SQL;
+        if (!self::$ConnObj->query($Sql)) {
+            die("Table creation failed you: ".self::$ConnObj->error);
+        }
+    }
+    private static function closeConnection() {
+        self::$ConnObj->close();
+    }
+    public static function createPerson() {
+        self::Connect();
+        // SQL INSERT
+        for ($I = 0; $I <10; $I++) {
+            $Sql = <<<SQL
+            
+        SQL;
+        }
+        if (!self::$ConnObj->query($Sql)) {
+            die("Creating person failed you: ".self::$ConnObj->error);
+        }
+        self::closeConnection();
     }
 }
-echo DatabaseDesign::Connect();
+Person::createPerson();
