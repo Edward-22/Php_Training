@@ -14,25 +14,26 @@ class Person {
         }
     }
     private static function databaseCreation() {
+        $DatabaseNameStr = "MyDatabase";
         $Sql = <<<SQL
-            CREATE DATABASE IF NOT EXISTS MyDatabase
+            CREATE DATABASE IF NOT EXISTS $DatabaseNameStr
         SQL;
         if (!self::$ConnObj->query($Sql)) {
             die("Database creation ailed you: ".self::$ConnObj->error);
-        }
-        else {
+        } else {
+            self::$ConnObj->select_db($DatabaseNameStr);
             self::tableCreation();
         }
     }
     private static function tableCreation() {
+
         $Sql = <<<SQL
-                USE MyDatabase
                 CREATE TABLE IF NOT EXISTS Person (
                 FirstName VARCHAR(20) NOT NULL,
                 Surname VARCHAR(20) NOT NULL,
                 DateOfBirth DATE NOT NULL,
                 EmailAddress VARCHAR(30),
-                Age INT
+                Age INT(3)
             )
         SQL;
         if (!self::$ConnObj->query($Sql)) {
@@ -42,18 +43,19 @@ class Person {
     private static function closeConnection() {
         self::$ConnObj->close();
     }
-    public static function createPerson() {
+    public static function createPerson($Int) {
         self::Connect();
         // SQL INSERT
-        for ($I = 0; $I <10; $I++) {
             $Sql = <<<SQL
-            INSERT INTO Person()
+            INSERT INTO Person(FirstName, Surname, DateOfBirth, EmailAddress, Age)
+            VALUES ("Piet","Pompies","1988-01-01","pompie@pomp.com",$Int)
         SQL;
-        }
         if (!self::$ConnObj->query($Sql)) {
             die("Creating person failed you: ".self::$ConnObj->error);
         }
         self::closeConnection();
     }
 }
-Person::createPerson();
+for ($Int = 0; $Int <=10; $Int++) {
+    Person::createPerson($Int);
+}
