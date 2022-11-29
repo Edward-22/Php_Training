@@ -130,6 +130,7 @@ class Person {
 //echo json_encode(Person::loadPerson());
 //Person::savePerson();
 //Person::deletePerson();
-//echo json_encode(Person::loadAllPeople());
+echo json_encode(Person::loadAllPeople());
 //Person::deleteAllPeople();
-echo $ExecutionTimeInt = microtime(true) - $time_start;
+$ExecutionTimeInt = microtime(true) - $time_start;
+//echo number_format($ExecutionTimeInt, 3);
