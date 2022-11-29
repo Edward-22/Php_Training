@@ -19,7 +19,7 @@ class Person {
             CREATE DATABASE IF NOT EXISTS $DatabaseNameStr
         SQL;
         if (!self::$ConnObj->query($Sql)) {
-            die("Database creation ailed you: ".self::$ConnObj->error);
+            die("Database creation failed you: ".self::$ConnObj->error);
         } else {
             self::$ConnObj->select_db($DatabaseNameStr);
             self::tableCreation();
@@ -73,6 +73,10 @@ class Person {
     }
     public static function savePerson() { //UPDATE
         self::Connect();
+        $Sql = <<<SQL
+        UPDATE MyDatabase SET FirstName = 'Peter' WHERE id = 4
+    SQL;
+        self::closeConnection();
     }
 }
 //When you want loop to create 10 Persons
