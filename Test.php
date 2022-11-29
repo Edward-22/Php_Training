@@ -1,4 +1,5 @@
 <?php
+$time_start = microtime(true);
 class Person {
     protected static $ServernameStr = "localhost";
     protected static $UsernameStr = "phpmyadmin";
@@ -131,3 +132,4 @@ class Person {
 //Person::deletePerson();
 //echo json_encode(Person::loadAllPeople());
 //Person::deleteAllPeople();
+echo $ExecutionTimeInt = microtime(true) - $time_start;
