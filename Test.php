@@ -54,10 +54,10 @@ class Person {
         }
         self::closeConnection();
     }
-    public static function loadPerson() { // SELECT
+        public static function loadPerson() { // SELECT
         self::Connect();
             $Sql = <<<SQL
-            SELECT FirstName, Surname FROM Person
+            SELECT FirstName, Surname FROM Person 
         SQL;
         $ResultObj = self::$ConnObj->query($Sql);
         $NewArr = [];
@@ -74,13 +74,22 @@ class Person {
     public static function savePerson() { //UPDATE
         self::Connect();
         $Sql = <<<SQL
-        UPDATE MyDatabase SET FirstName = 'Peter' WHERE id = 4
+        UPDATE Person SET FirstName = 'Peter' WHERE FirstName = "Piet"
+    SQL;
+        self::closeConnection();
+    }
+    public static function deletePerson() {
+        self::connect();
+        $Sql = <<<SQL
+        DELETE FROM Person WHERE Age = 2
     SQL;
         self::closeConnection();
     }
 }
 //When you want loop to create 10 Persons
-/*for ($Int = 0; $Int <=9; $Int++) {
-    Person::createPerson($Int);
-}*/
+    /*for ($Int = 0; $Int <= 9; $Int++) {
+        Person::createPerson($Int);
+    }*/
 echo json_encode(Person::loadPerson());
+//Person::savePerson();
+//Person::deletePerson();
