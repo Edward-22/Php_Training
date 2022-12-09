@@ -1,6 +1,5 @@
 <?php
-echo "Hello World";
-error_log("Helo again");
+error_log("Hallo again");
 $time_start = microtime(true);
 class Person {
     protected static $ServernameStr = "localhost";
