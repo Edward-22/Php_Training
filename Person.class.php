@@ -1,6 +1,4 @@
 <?php
-error_log("Hallo again");
-$time_start = microtime(true);
 class Person {
     protected static $ServernameStr = "localhost";
     protected static $UsernameStr = "phpmyadmin";
@@ -45,21 +43,21 @@ class Person {
     private static function closeConnection() {
         self::$ConnObj->close();
     }
-    public static function createPerson($Int) { //INSERT
+    public static function createPerson() { //INSERT
         self::Connect();
         $Sql = <<<SQL
                 INSERT INTO Person(FirstName, Surname, DateOfBirth, EmailAddress, Age)
-                VALUES ("Piet","Pompies","1988-01-01","pompie@pomp.com",$Int)
+                VALUES ()
             SQL;
         if (!self::$ConnObj->query($Sql)) {
             die("Creating person failed you: ".self::$ConnObj->error);
         }
         self::closeConnection();
     }
-    public static function loadPerson() { // SELECT
+    public static function loadPerson($FirstNameStr) { // SELECT
         self::Connect();
         $Sql = <<<SQL
-                SELECT * FROM Person WHERE FirstName = "Piet"
+                SELECT * FROM Person WHERE FirstName = "{$FirstNameStr}"        
             SQL;
         $ResultObj = self::$ConnObj->query($Sql);
         $NewArr = [];
@@ -93,46 +91,4 @@ class Person {
         }
         self::closeConnection();
     }
-    public static function loadAllPeople() {
-        self::connect();
-        $Sql = <<<SQL
-            SELECT * FROM Person
-        SQL;
-        $ResultObj = self::$ConnObj->query($Sql);
-        $AllPeopleArr = [];
-        if ($ResultObj->num_rows > 0) {
-            while($AttributeArr = $ResultObj->fetch_assoc()) {
-                $AllPeopleArr[] = $AttributeArr;
-            }
-        } else {
-            die("Loading all people failed:");
-        }
-        self::closeConnection();
-        return $AllPeopleArr;
-    }
-    public static function deleteAllPeople() {
-        self::connect();
-        $Sql = <<<SQL
-            TRUNCATE TABLE Person
-        SQL;
-        if (!self::$ConnObj->query($Sql)) {
-            die("Deleting person failed: ".self::$ConnObj->error);
-        } else {
-            self::closeConnection();
-        }
-    }
 }
-//Person::createPerson(1);
-//When you want loop to create 10 Persons
-/*for ($Int = 0; $Int <= 9; $Int++) {
-    Person::createPerson($Int);
-}*/
-//-------------------------------------------
-//Calling functions
-//echo json_encode(Person::loadPerson());
-//Person::savePerson();
-//Person::deletePerson();
-//echo json_encode(Person::loadAllPeople());
-//Person::deleteAllPeople();
-$ExecutionTimeInt = microtime(true) - $time_start;
-//echo json_encode($_POST[]);
