@@ -29,10 +29,10 @@ class Person {
 
         $Sql = <<<SQL
                 CREATE TABLE IF NOT EXISTS Person (
-                FirstName VARCHAR(20) NOT NULL,
-                Surname VARCHAR(20) NOT NULL,
+                FirstName VARCHAR(30) NOT NULL,
+                Surname VARCHAR(30) NOT NULL,
                 DateOfBirth DATE NOT NULL,
-                EmailAddress VARCHAR(30),
+                EmailAddress VARCHAR(50),
                 Age INT(3)
             )
         SQL;
@@ -43,16 +43,14 @@ class Person {
     private static function closeConnection() {
         self::$ConnObj->close();
     }
-    public static function createPerson() { //INSERT
+    public static function createPerson($personObj) { //INSERT
         self::Connect();
         $Sql = <<<SQL
                 INSERT INTO Person(FirstName, Surname, DateOfBirth, EmailAddress, Age)
-                VALUES ()
+                VALUES ({$personObj})
             SQL;
-        if (!self::$ConnObj->query($Sql)) {
-            die("Creating person failed you: ".self::$ConnObj->error);
-        }
         self::closeConnection();
+        return "wow";
     }
     public static function loadPerson($FirstNameStr) { // SELECT
         self::Connect();

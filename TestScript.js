@@ -1,23 +1,36 @@
 $("#Create").click(function () {
-    let personName = $("#firstname").val()
-    let personSurname = $("#surname").val()
-    let personDateOfBirth = $("#dateofbirth").val()
-    let personEmailAddress = $("#emailaddress").val()
-    let personAge = $("#age").val()
     $.post("ActionFile.php",
         {
             command: "Create",
-            data: personAge,personSurname,personDateOfBirth,personEmailAddress,personAge
+            personObj: {
+                FirstName: $("#firstname").val(),
+                Surname: $("#surname").val(),
+                DateOfBirth: $("#dateofbirth").val(),
+                EmailAddress: $("#emailaddress").val(),
+                Age: $("#age").val()
+            }
         },
         function(data){
             alert(data);
         });
 });
 $("#Update").click(function () {
-    alert("Update button clicked!")
+    $.post("ActionFile.php",
+        {
+            command: "Update"
+        },
+        function(data){
+            alert(data);
+        });
 });
 $("#Delete").click(function () {
-    alert("Delete button clicked!")
+    $.post("ActionFile.php",
+        {
+            command: "Delete",
+        },
+        function(data){
+            alert(data);
+        });
 });
 $("#Search").click(function () {
     let userSearchData = $("#lookupPerson").val();
