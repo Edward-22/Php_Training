@@ -47,10 +47,13 @@ class Person {
         self::Connect();
         $Sql = <<<SQL
                 INSERT INTO Person(FirstName, Surname, DateOfBirth, EmailAddress, Age)
-                VALUES ({$personObj})
+                VALUES ("{$personObj->FirstName}", "{$personObj->Surname}", "{$personObj->DateOfBirth}", "{$personObj->EmailAddress}", "{$personObj->Age}");
             SQL;
+        if (!self::$ConnObj->query($Sql)) {
+            die("Create person has failed you: ".self::$ConnObj->error);
+        }
         self::closeConnection();
-        return "wow";
+        return "Created person successfully";
     }
     public static function loadPerson($FirstNameStr) { // SELECT
         self::Connect();

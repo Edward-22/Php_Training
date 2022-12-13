@@ -2,7 +2,7 @@ $("#Create").click(function () {
     $.post("ActionFile.php",
         {
             command: "Create",
-            personObj: {
+            data: {
                 FirstName: $("#firstname").val(),
                 Surname: $("#surname").val(),
                 DateOfBirth: $("#dateofbirth").val(),
