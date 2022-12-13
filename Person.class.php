@@ -32,8 +32,8 @@ class Person {
                 FirstName VARCHAR(30) NOT NULL,
                 Surname VARCHAR(30) NOT NULL,
                 DateOfBirth DATE NOT NULL,
-                EmailAddress VARCHAR(50),
-                Age INT(3)
+                EmailAddress VARCHAR(250) UNIQUE,
+                Age INT
             )
         SQL;
         if (!self::$ConnObj->query($Sql)) {
