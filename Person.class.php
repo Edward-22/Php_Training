@@ -58,7 +58,8 @@ class Person {
     public static function loadPerson($FirstNameStr) { // SELECT
         self::Connect();
         $Sql = <<<SQL
-                SELECT * FROM Person WHERE FirstName = "{$FirstNameStr}"        
+                SELECT * FROM Person 
+                WHERE FirstName = "{$FirstNameStr}"        
             SQL;
         $ResultObj = self::$ConnObj->query($Sql);
         $NewArr = [];
@@ -72,24 +73,32 @@ class Person {
         self::closeConnection();
         return $NewArr;
     }
-    public static function savePerson() { //UPDATE
+    public static function savePerson($savePersonObj) { //UPDATE
         self::Connect();
         $Sql = <<<SQL
-            UPDATE Person SET FirstName = 'Peter' WHERE FirstName = "Piet"
+            UPDATE Person SET FirstName = "{$savePersonObj->FirstName}",
+                              Surname = "{$savePersonObj->Surname}",
+                              DateOfBirth = "{$savePersonObj->DateOfBirth}",
+                              EmailAddress = "{$savePersonObj->EmailAddress}",
+                              Age = "{$savePersonObj->Age}" 
+            WHERE FirstName = "Piet" 
         SQL;
         if (!self::$ConnObj->query($Sql)) {
             die("Saving person failed: ".self::$ConnObj->error);
         }
         self::closeConnection();
+        return "Updated";
     }
-    public static function deletePerson() {
+    public static function deletePerson($personDeleteObj) {
         self::connect();
         $Sql = <<<SQL
-            DELETE FROM Person WHERE Age = 2
+            DELETE FROM Person 
+            WHERE FirstName = "{$personDeleteObj->FirstName}" AND EmailAddress = "{$personDeleteObj->EmailAddress}"
         SQL;
         if (!self::$ConnObj->query($Sql)) {
             die("Deleting person failed: ".self::$ConnObj->error);
         }
         self::closeConnection();
+        return "Deleted";
     }
 }

@@ -17,7 +17,14 @@ $("#Create").click(function () {
 $("#Update").click(function () {
     $.post("ActionFile.php",
         {
-            command: "Update"
+            command: "Update",
+            data: {
+                FirstName: $("#firstname").val(),
+                Surname: $("#surname").val(),
+                DateOfBirth: $("#dateofbirth").val(),
+                EmailAddress: $("#emailaddress").val(),
+                Age: $("#age").val()
+            }
         },
         function(data){
             alert(data);
@@ -27,6 +34,10 @@ $("#Delete").click(function () {
     $.post("ActionFile.php",
         {
             command: "Delete",
+            data: {
+                FirstName: $("#firstname").val(),
+                EmailAddress: $("#emailaddress").val()
+            }
         },
         function(data){
             alert(data);

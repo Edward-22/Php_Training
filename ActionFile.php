@@ -7,9 +7,9 @@ require("Person.class.php");
         case "Create";
             echo json_encode(Person::createPerson((object)$_POST['data']));
             break;
-        /* case "Update";
+        case "Update";
              echo json_encode(Person::savePerson($_POST['data']));
              break;
-         case "Delete";
-             echo json_encode(Person::deletePerson($_POST['data']));*/
+        case "Delete";
+             echo json_encode(Person::deletePerson((object)$_POST['data']));
     }
