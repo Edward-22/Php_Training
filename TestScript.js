@@ -23,7 +23,8 @@ $("#Update").click(function () {
                 Surname: $("#surname").val(),
                 DateOfBirth: $("#dateofbirth").val(),
                 EmailAddress: $("#emailaddress").val(),
-                Age: $("#age").val()
+                Age: $("#age").val(),
+                FindEmailAddress: $("#findemailaddress").val()
             }
         },
         function(data){

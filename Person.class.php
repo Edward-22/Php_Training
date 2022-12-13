@@ -81,7 +81,7 @@ class Person {
                               DateOfBirth = "{$savePersonObj->DateOfBirth}",
                               EmailAddress = "{$savePersonObj->EmailAddress}",
                               Age = "{$savePersonObj->Age}" 
-            WHERE FirstName = "Piet" 
+            WHERE EmailAddress = "{$savePersonObj->FindEmailAddress}"
         SQL;
         if (!self::$ConnObj->query($Sql)) {
             die("Saving person failed: ".self::$ConnObj->error);
