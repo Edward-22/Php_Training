@@ -45,11 +45,20 @@ $("#Delete").click(function () {
         });
 });
 $("#Search").click(function () {
-    let userSearchData = $("#lookupPerson").val();
+    let userSearchData = $("#LookupPerson").val();
     $.post("ActionFile.php",
         {
             command: "Search",
             data: userSearchData
+        },
+        function(data){
+            alert(data);
+        });
+});
+$("#StartDatabase").click(function () {
+    $.post("ActionFile.php",
+        {
+            command: "StartDatabase"
         },
         function(data){
             alert(data);

@@ -5,8 +5,10 @@
 </head>
 <body>
 <h2>Database Actions</h2>
-<label for="lookupPerson">Lookup person:</label><br>
-<input type='text' id="lookupPerson">
+<button type="button" id="StartDatabase">Start Database</button><br>
+<br>
+<label for="LookupPerson">Lookup person:</label><br>
+<input type='text' id="LookupPerson">
 <button type="button" id="Search">Search</button><br>
 <h3>Make changes here</h3>
 <button type="button" id="Create">Create</button>
@@ -23,8 +25,8 @@
 <label for="age">Age:</label><br>
 <input type='text' id="age" name="age"><br>
 <br>
-<button type="button" id="Update">Update</button>
-<input type='text' id="findemailaddress" name="findemailaddress"><br>
+<label for="findemailaddress">Find using email address:</label><br>
+<input type='text' id="findemailaddress" name="findemailaddress"> <button type="button" id="Update">Update</button>
 <script src="TestScript.js"></script>
 </body>
 </html>

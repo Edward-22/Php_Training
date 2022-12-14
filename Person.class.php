@@ -5,15 +5,19 @@ class Person {
     protected static $PasswordStr = "password";
     protected static $ConnObj;
 
-    private static function connect() {
+    public static function connect() {
         self::$ConnObj = new mysqli(self::$ServernameStr, self::$UsernameStr, self::$PasswordStr);
         if (self::$ConnObj->connect_error) {
             die("Connection failed: ".self::$ConnObj->connect_error);
         } else {
             self::databaseCreation();
         }
+        return "Connected";
     }
-    private static function databaseCreation() {
+    public static function closeConnection() {
+        self::$ConnObj->close();
+    }
+    public static function databaseCreation() {
         $DatabaseNameStr = "MyDatabase";
         $Sql = <<<SQL
             CREATE DATABASE IF NOT EXISTS $DatabaseNameStr
@@ -24,11 +28,12 @@ class Person {
             self::$ConnObj->select_db($DatabaseNameStr);
             self::tableCreation();
         }
+        return "Created database";
     }
-    private static function tableCreation() {
-
+    public static function tableCreation() {
         $Sql = <<<SQL
                 CREATE TABLE IF NOT EXISTS Person (
+                Id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
                 FirstName VARCHAR(30) NOT NULL,
                 Surname VARCHAR(30) NOT NULL,
                 DateOfBirth DATE NOT NULL,
@@ -39,28 +44,30 @@ class Person {
         if (!self::$ConnObj->query($Sql)) {
             die("Table creation failed you: ".self::$ConnObj->error);
         }
-    }
-    private static function closeConnection() {
-        self::$ConnObj->close();
+        return "Created table";
     }
     public static function createPerson($personObj) { //INSERT
         self::Connect();
         $Sql = <<<SQL
                 INSERT INTO Person(FirstName, Surname, DateOfBirth, EmailAddress, Age)
-                VALUES ("{$personObj->FirstName}", "{$personObj->Surname}", "{$personObj->DateOfBirth}", "{$personObj->EmailAddress}", "{$personObj->Age}");
-            SQL;
+                VALUES ("{$personObj->FirstName}",
+                        "{$personObj->Surname}",
+                        "{$personObj->DateOfBirth}",
+                        "{$personObj->EmailAddress}",
+                        "{$personObj->Age}");
+        SQL;
         if (!self::$ConnObj->query($Sql)) {
             die("Create person has failed you: ".self::$ConnObj->error);
         }
         self::closeConnection();
         return "Created person successfully";
     }
-    public static function loadPerson($FirstNameStr) { // SELECT
+    public static function loadPerson($FirstNameStr) { // SELECT :: Search
         self::Connect();
         $Sql = <<<SQL
                 SELECT * FROM Person 
-                WHERE FirstName = "{$FirstNameStr}"        
-            SQL;
+                WHERE FirstName = '{$FirstNameStr}'
+        SQL;
         $ResultObj = self::$ConnObj->query($Sql);
         $NewArr = [];
         if ($ResultObj->num_rows > 0) {
