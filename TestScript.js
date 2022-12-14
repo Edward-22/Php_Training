@@ -3,11 +3,11 @@ $("#Create").click(function () {
         {
             command: "Create",
             data: {
-                FirstName: $("#firstname").val(),
-                Surname: $("#surname").val(),
-                DateOfBirth: $("#dateofbirth").val(),
-                EmailAddress: $("#emailaddress").val(),
-                Age: $("#age").val()
+                FirstNameStr: $("#firstname").val(),
+                SurnameStr: $("#surname").val(),
+                DateOfBirthStr: $("#dateofbirth").val(),
+                EmailAddressStr: $("#emailaddress").val(),
+                AgeStr: $("#age").val()
             }
         },
         function(data){
@@ -45,6 +45,7 @@ $("#Delete").click(function () {
         });
 });
 $("#Search").click(function () {
+    var Search= "Search";
     let userSearchData = $("#LookupPerson").val();
     $.post("ActionFile.php",
         {

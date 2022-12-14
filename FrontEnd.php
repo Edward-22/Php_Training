@@ -1,3 +1,4 @@
+
 <html>
 <head>
     <title>Local</title>
@@ -9,7 +10,7 @@
 <br>
 <label for="LookupPerson">Lookup person:</label><br>
 <input type='text' id="LookupPerson">
-<button type="button" id="Search">Search</button><br>
+<button type="button" id="Search" name="Search">Search</button><br>
 <h3>Make changes here</h3>
 <button type="button" id="Create">Create</button>
 <button type="button" id="Delete">Delete</button><br>
@@ -25,7 +26,7 @@
 <label for="age">Age:</label><br>
 <input type='text' id="age" name="age"><br>
 <br>
-<label for="findemailaddress">Find using email address:</label><br>
+<label for="findemailaddress">Update using email address:</label><br>
 <input type='text' id="findemailaddress" name="findemailaddress"> <button type="button" id="Update">Update</button>
 <script src="TestScript.js"></script>
 </body>
