@@ -11,9 +11,10 @@
 <label for="LookupPerson">Lookup person:</label><br>
 <input type='text' id="LookupPerson">
 <button type="button" id="Search" name="Search">Search</button><br>
-<h3>Make changes here</h3>
+<br>
 <button type="button" id="Create">Create</button>
-<button type="button" id="Delete">Delete</button><br>
+<button type="button" id="Delete">Delete</button>
+<button type="button" id="Update">Update</button><br>
 <br>
 <label for="firstname">FirstName:</label><br>
 <input type='text' id="firstname" name="firstname"><br>
@@ -27,7 +28,7 @@
 <input type='text' id="age" name="age"><br>
 <br>
 <label for="findemailaddress">Update using email address:</label><br>
-<input type='text' id="findemailaddress" name="findemailaddress"> <button type="button" id="Update">Update</button>
+<input type='text' id="findemailaddress" name="findemailaddress">
 <script src="TestScript.js"></script>
 </body>
 </html>
