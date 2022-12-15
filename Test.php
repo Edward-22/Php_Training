@@ -1,14 +1,17 @@
 <?php
-$IntArr = [0,1];
+$InitialNumbersArr = [0,1];
 $FibonacciArr = [0,1];
-for ($Int=0; $Int<=7; $Int++) {
-    $NextInt = array_sum($IntArr);
-    array_shift($IntArr);
-    array_push($IntArr, $NextInt);
-    array_push($FibonacciArr,$NextInt);
-}
+$MaximumNumberInt = 34;
+    for ($Int = 0; $Int <= $MaximumNumberInt; $Int = array_sum($InitialNumbersArr)) {
+        $NextInt = array_sum($InitialNumbersArr);
+        array_shift($InitialNumbersArr);
+        array_push($InitialNumbersArr, $NextInt);
+        array_push($FibonacciArr, $NextInt);
+    }
+
 echo json_encode($FibonacciArr)."<br>";
-class Fibonacci{
+
+/*class Fibonacci{
     public static function getSequence($TotalIterationsInt){
         $SequenceArr = [0,1];
         for ($Int = 0; $Int <$TotalIterationsInt; $Int++) {
@@ -17,4 +20,4 @@ class Fibonacci{
         return $SequenceArr;
     }
 }
-echo json_encode(Fibonacci::getSequence(8));
+echo json_encode(Fibonacci::getSequence(8));*/
