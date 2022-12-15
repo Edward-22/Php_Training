@@ -1,8 +1,8 @@
 <html>
 <body>
-<p>Give me a Fibonacci number.</p>
+<p>Input the maximum number.</p>
 <form action = "Test.php" method = "POST">
-    Maximum Number <input type = "number" name ="Maximum Number" >
+    Maximum number: <input type = "number" name ="data" >
     <input type = "submit">
 </form>
 </body>
