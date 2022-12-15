@@ -2,6 +2,7 @@
 $InitialNumbersArr = [0,1];
 $FibonacciArr = [0,1];
 $MaximumNumberInt = 34;
+echo "Only use number above 0!<br>";
     for ($Int = 0; $Int <= $MaximumNumberInt; $Int = array_sum($InitialNumbersArr)) {
         $NextInt = array_sum($InitialNumbersArr);
         array_shift($InitialNumbersArr);
@@ -9,7 +10,7 @@ $MaximumNumberInt = 34;
         array_push($FibonacciArr, $NextInt);
     }
 
-echo json_encode($FibonacciArr)."<br>";
+echo json_encode($FibonacciArr)."";
 
 /*class Fibonacci{
     public static function getSequence($TotalIterationsInt){
