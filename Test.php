@@ -11,12 +11,11 @@ if ($MaximumNumberInt>1) {
         array_push($FibonacciArr, $NextInt);
     }
     echo json_encode($FibonacciArr);
-} else if ($MaximumNumberInt<0) {
+}   else if ($MaximumNumberInt<0) {
     header("Location: http://localhost/PhpFoundations/Front.php");
     echo "<script>alert('Only positive numbers allowed!')</script>";
-} else if ($MaximumNumberInt=0) {
-    echo "banana";
+} else if ($MaximumNumberInt==0) {
+    echo "[0]";
 } else {
     echo json_encode($FibonacciArr);
 }
-
