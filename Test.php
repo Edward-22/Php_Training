@@ -2,15 +2,15 @@
 $InitialNumbersArr = [0,1];
 $FibonacciArr = [0,1];
 $MaximumNumberInt = 34;
-echo "Only use number above 0!<br>";
+echo "Fibonacci is cool!<br>";
     for ($Int = 0; $Int <= $MaximumNumberInt; $Int = array_sum($InitialNumbersArr)) {
         $NextInt = array_sum($InitialNumbersArr);
         array_shift($InitialNumbersArr);
         array_push($InitialNumbersArr, $NextInt);
         array_push($FibonacciArr, $NextInt);
     }
+echo json_encode($FibonacciArr);
 
-echo json_encode($FibonacciArr)."";
 
 /*class Fibonacci{
     public static function getSequence($TotalIterationsInt){
