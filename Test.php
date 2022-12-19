@@ -12,13 +12,10 @@ if ($MaximumNumberInt>1) {
     }
     echo json_encode($FibonacciArr);
 }   else if ($MaximumNumberInt<0) {
-    echo "<script>alert('Only positive numbers allowed!')</script>";
-    sleep(2);
-    header("Location: http://localhost/PhpFoundations/Front.php");
+    echo "<script>alert('That was a SUS number!')</script>";
+    header("Location: http://localhost/Php_Training/Front.php");
 } else if ($MaximumNumberInt==0) {
     echo "[0]";
 } else {
     echo json_encode($FibonacciArr);
 }
-
-//echo "<script>alert('Only positive numbers allowed!')</script>";
